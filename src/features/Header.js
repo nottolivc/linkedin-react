@@ -8,12 +8,24 @@ import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import ChatIcon from '@material-ui/icons/Chat';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from './reducer/userSlice';
+import { auth } from './firebase';
 
 function Header() {
+    const dispatch = useDispatch()
+    const logoutOfApp = () => {
+        dispatch(logout())
+        auth.signOut();
+    }
+
     return (
         <div className="header">
             <div className="header__left">
                 <img src="https://www.flaticon.com/svg/static/icons/svg/174/174857.svg" alt="" />
+                <Link to="/login">Login</Link>
+                <p onClick={logoutOfApp}>Logout</p>
             <div className="header__search">
                 <SearchIcon />
                 <input type="text" />
