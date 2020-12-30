@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Feed.css';
 import CreateIcon from '@material-ui/icons/Create';
 import InputOption from './InputOption';
@@ -7,13 +7,26 @@ import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import DescriptionIcon from '@material-ui/icons/Description';
 import Post from './Post';
+import { db } from "./firebase";
 
 export default function Feed() {
     const [posts, setPosts] = useState([])
+    
     const sendPost = e => {
         e.preventDefault();
         setPosts([...posts])
     }
+
+    useEffect(() => {
+        db.collection('posts').onSnapshot(snapshot => {
+            setPosts(snapshot.docs.map(doc => (
+                {
+                    id: doc.id,
+                    data: doc.data(),
+                }
+            )))
+        })
+    },[])
 
     return (
         <>
