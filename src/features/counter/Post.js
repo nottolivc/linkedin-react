@@ -1,9 +1,10 @@
 import React from 'react';
 import './Post.css';
 import { Avatar } from '@material-ui/core';
-//import ThumbDownIcon from '@material-ui/icons/ThumbDown';
+import ShareIcon from '@material-ui/icons/Share';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-
+import CommentIcon from '@material-ui/icons/Comment';
+import SendIcon from '@material-ui/icons/Send';
 import InputOption from './InputOption';
 
 export default function Post({name, description, message, photoUrl}) {
@@ -22,6 +23,9 @@ export default function Post({name, description, message, photoUrl}) {
             </div>
             <div className="post__buttons">
                 <InputOption Icon={ThumbUpIcon} title=" Like" />
+                <InputOption Icon={ShareIcon} title=" Share" />
+                <InputOption Icon={CommentIcon} title=" Comment" />
+                <InputOption Icon={SendIcon} title=" Send" />
             </div>
         </div>
     )
