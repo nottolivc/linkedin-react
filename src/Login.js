@@ -14,12 +14,17 @@ export default function Login() {
 
     const loginToApp = e => {
         e.preventDefault();
-
+        auth.signInWithEmailAndPassword(email, password)
+        .then(userAuth => {
+            dispatch(login({
+                email: userAuth.email,
+                uid: userAuth.uid,
+                displayName: userAuth.displayName,
+            }))
+        }).catch(error => alert(error))
     }
     
-
-    const register = e => {
-        e.preventDefault();
+    const register = () => {    
         if (!name) {
             return alert('Please enter a name');
         }
@@ -39,7 +44,7 @@ export default function Login() {
                     })
                 );
             });
-        }).catch((error) => alert(error.message));
+        }).catch((error) => alert(error));
         }
     
     return (
@@ -51,8 +56,8 @@ export default function Login() {
                 <input type="text" value={pic} onChange={(e) => setPic(e.target.value)} placeholder="Link to profile pic" />
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+                <button type="submit" onClick={loginToApp}>Sign in</button>
             </form>
-            <button type="submit" onSubmit={loginToApp}>Sign in</button>
             <br />
             <br />
             <p style={{textAlign: 'center'}}>Not a member? <span className="login__register">Sign in</span></p>

@@ -19,3 +19,7 @@ p {
   color: #444;
   margin-left: 4px;
 }
+
+a {
+  cursor: pointer;
+}

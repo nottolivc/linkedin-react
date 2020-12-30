@@ -8,7 +8,7 @@
 }
 
 .logo {
-    width: 350px;
+    width: 330px;
     height: auto;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -22,7 +22,7 @@
 }
 
 .login > form > input {
-    width: 350px;
+    width: 330px;
     height: 55px;
     font-size: 20ps;
     padding-left: 10px;
@@ -33,6 +33,7 @@
 button {
     width: 350px;
     height: 50px;
+    cursor: pointer;
     background-color: #0074b1;
     color: white;
     border-radius: 5px;
