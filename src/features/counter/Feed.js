@@ -8,25 +8,33 @@ import EventNoteIcon from '@material-ui/icons/EventNote';
 import DescriptionIcon from '@material-ui/icons/Description';
 import Post from './Post';
 import { db } from "./firebase";
+import firebase from 'firebase';
 
 export default function Feed() {
-    const [posts, setPosts] = useState([])
+    const [inputPost, setInput] = useState('');
+    const [posts, setPosts] = useState([]);
     
-    const sendPost = e => {
-        e.preventDefault();
-        setPosts([...posts])
-    }
-
     useEffect(() => {
-        db.collection('posts').onSnapshot(snapshot => {
-            setPosts(snapshot.docs.map(doc => (
-                {
+    
+        db.collection('posts').onSnapshot((snapshot) => 
+            setPosts(snapshot.docs.map((doc) => ({
                     id: doc.id,
                     data: doc.data(),
-                }
-            )))
+                }))
+            )
+        )
+    }, [])
+
+    const sendPost = e => {
+        e.preventDefault();
+        db.collection('posts').add({
+            name: '',
+            description: '',
+            message: inputPost,
+            photoUrl: '',
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         })
-    },[])
+    }
 
     return (
         <>
@@ -35,7 +43,7 @@ export default function Feed() {
             <div className="feed__input">
             <CreateIcon />
             <form>
-                <input type="text" />
+                <input type="text" value={inputPost} onChange={e => setInput(e.target.value)} />
                 <button onClick={sendPost} type="submit">Post</button>
             </form>
             </div>
@@ -46,14 +54,14 @@ export default function Feed() {
                 <InputOption color='#7FC15E' Icon={DescriptionIcon} title='Article' />
             </div>
         </div>
-        {posts.map((post) => (
-            <Post />
+        {posts.map(({ id, data: { name, description, message, photoUrl }}) => (
+            <Post key={id} name={name} description={description} message={message} photoUrl={photoUrl} />
         ))}
-        <Post className="post" 
+        {/* <Post className="post" 
         name='Test' 
         description='working?' 
         message='hello world' 
-        photoUrl='' />
+        photoUrl='' /> */}
         </div>
     </>
     )

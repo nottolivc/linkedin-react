@@ -13,13 +13,13 @@ export default function Post({name, description, message, photoUrl}) {
             <div className="post__header">
                 <Avatar />
                 <div className="post__info">
-                <h2>Author</h2>
-                <p>Description</p>
+                <h2>Author: {name}</h2>
+                    <p>Description: {description}</p>
                 </div>
             </div>
 
                 <div className="post__body">
-                <p>Message</p>
+                    <p>{message}</p>
             </div>
             <div className="post__buttons">
                 <InputOption Icon={ThumbUpIcon} title=" Like" />
