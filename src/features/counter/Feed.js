@@ -26,6 +26,7 @@ export default function Feed() {
                 <InputOption color='#7FC15E' Icon={DescriptionIcon} title='Article' />
             </div>
         </div>
+        <Post className="post" name='Test' description='working?' message='hello world' photoUrl='' />
         </div>
     )
 }

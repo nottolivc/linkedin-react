@@ -1,6 +1,10 @@
 import React from 'react';
 import './Post.css';
 import { Avatar } from '@material-ui/core';
+//import ThumbDownIcon from '@material-ui/icons/ThumbDown';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+
+import InputOption from './InputOption';
 
 export default function Post({name, description, message, photoUrl}) {
     return (
@@ -11,7 +15,14 @@ export default function Post({name, description, message, photoUrl}) {
                 <h2>Author</h2>
                 <p>Description</p>
                 </div>
-            </div> 
+            </div>
+
+                <div className="post__body">
+                <p>Message</p>
+            </div>
+            <div className="post__buttons">
+                <InputOption Icon={ThumbUpIcon} title=" Like" />
+            </div>
         </div>
     )
 }
