@@ -6,6 +6,7 @@ import ImageIcon from '@material-ui/icons/Image';
 import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import DescriptionIcon from '@material-ui/icons/Description';
+import Post from './Post';
 
 export default function Feed() {
     return (
